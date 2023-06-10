@@ -9,22 +9,13 @@ VERD="\033[0;32m"	#Deixa a saída na cor verde
 VERM="\033[1;31m"	#Deixa a saída na cor vermelho
 
 ## Alias
-SI="sudo apt install -y"		    #Comando para instalar novos pacotes
-SA="sudo apt"                       #Usado para atualizar sistema
-data_atual=$(date +"%Y%m%d%H%M%S")  #Define a data e hora atual
-lightdm="/etc/lightdm/lightdm.conf" #Endereço completo do arquivo de configuração
+SI="sudo apt install -y"		#Comando para instalar novos pacotes
+SA="sudo apt"				#Usado para atualizar sistema
+data_atual=$(date +"%Y%m%d%H%M%S")	#Define a data e hora atual
+lightdm="/etc/lightdm/lightdm.conf"	#Endereço completo do arquivo de configuração
 GITH="https://raw.githubusercontent.com/thespation/dpux_bspwm/main/scripts/" #Endereço do script (tema e ícone)
-data_atual=$(date +"%Y%m%d%H%M%S")  #Define a data e hora 
+data_atual=$(date +"%Y%m%d%H%M%S")	#Define a data e hora 
 GG="git clone"
-#Funções
-    # _atualizar.sistema
-    # _instalar.programas
-    # _habilitar_sudo
-    # _ksuperkey
-    # _lightdm
-    # _xinit
-    # _personalizacao
-    # _habilitar_sudo
 
 #--Função: Atualizar espelhos--#
 declare -f _atualizar.sistema
@@ -120,10 +111,9 @@ function _personalizacao(){
             if [[ -d "${i3pf}" ]]; then # Verifica existencia da pasta i3 no perfil do usuário
                 mv ${i3pf} ${i3pf}_BKP_${data_atual}
             fi
-
             echo -e "${CIAN}[ ] Copiando configurações para pasta correta ${NORM}"
             mkdir -p ${i3pf} && cp -rf ${i3t}/i3* ${i3pf} && chmod +x ${i3pf}* -R
-
+	    cp -rf /tmp/i3wm/fonts ~/.local/share #Copia as fontes necessárias
             echo -e "${VERD}[*] Configurações copiadas ${NORM}"
             _habilitar_sudo #Chama a função
 }
