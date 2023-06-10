@@ -1,0 +1,134 @@
+# i3blocks config file
+
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+full_text=
+align=center
+separator=false
+separator_block_width=8
+markup=pango
+
+#Color font
+color=#20262C
+
+border=#60AEEE
+border_top=2
+border_left=2
+border_right=2
+border_bottom=2
+
+background=#60AEEE
+
+# Blocks site: https://github.com/vivien/i3blocks-contrib
+
+#[window]
+#label=
+#command=~/.config/i3/i3blocks/scripts/window-title 80
+#color=#fea63c
+#interval=1
+#background=#20262C
+#border=#20262C
+
+#[i3-focusedwindow]
+#label= 
+#command=~/.config/i3/i3blocks/scripts/i3-focusedwindow 80
+#color=#60AEEE
+#interval=persist
+#background=#20262C
+#border=#20262C
+
+#[mediaplayer]
+#command=~/.config/i3/i3blocks/scripts/mediaplayer
+#instance=spotify
+#interval=5
+#signal=10
+
+[cpu_usage]
+label=  
+command=~/.config/i3/i3blocks/scripts/cpu_usage
+instance=Master
+interval=1
+
+[memory]
+command=~/.config/i3/i3blocks/scripts/memory
+label=  
+#label=<span foreground='#60AEEE' background='#60AEEE' size='x-large'></span><span background='#60AEEE'> <span foreground='#2e3440' size='large'> </span> </span>
+markup=pango
+interval=2
+min_width=memor
+
+
+#[disk]
+#instance=/
+#label=   
+#command=~/.config/i3/i3blocks/scripts/disk
+#interval=30
+
+#[CPU-temperature]
+#label=TEMP
+#command=~/.config/i3/i3blocks/scripts/cpu-temperature
+#interval=30
+
+#[temperature]
+#command=~/.config/i3/i3blocks/scripts/temperature
+#label=TEMP
+#interval=10
+#T_WARN=70
+#T_CRIT=90
+#SENSOR_CHIP=""
+
+[pavucontrol]
+full_text=   
+command=i3-msg -q exec pavucontrol
+border_top=0
+separator_block_width=0
+border_left=0
+border_right=0
+border_bottom=0
+
+[volume-pulseaudio]
+label=
+command=~/.config/i3/i3blocks/scripts/volume
+instance=Master
+interval=1
+
+#[Battery]
+#command=~/.config/i3/i3blocks/scripts/battery
+#interval=2
+
+[calendar]
+command=~/.config/i3/i3blocks/scripts/calendar
+interval=1
+LABEL= 
+DATEFMT=+%d %b %H:%M
+# SHORTFMT=+%H:%M:%S
+HEIGHT=180
+WIDTH=220
+
+[shutdown_menu]
+color=#DB6E87
+full_text=    
+command=~/.config/i3/rofi/bin/powermenu
+border_top=0
+border_left=0
+border_right=0
+border_bottom=0
+background=#20262C
