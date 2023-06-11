@@ -15,7 +15,9 @@ data_atual=$(date +"%Y%m%d%H%M%S")	#Define a data e hora atual
 lightdm="/etc/lightdm/lightdm.conf"	#Endereço completo do arquivo de configuração
 GITH="https://raw.githubusercontent.com/thespation/dpux_bspwm/main/scripts/" #Endereço do script (tema e ícone)
 data_atual=$(date +"%Y%m%d%H%M%S")	#Define a data e hora 
-GG="git clone"
+GG="git clone"				#Comando para baixar arquivos git
+i3pf="$HOME/.config"			#Endereço das configurações
+i3t="/tmp/i3wm"				#Pasta temporária
 
 #--Função: Atualizar espelhos--#
 declare -f _atualizar.sistema
@@ -101,22 +103,18 @@ declare -f _xinit
 #--Função: Copiar personalizações--#
 declare -f _personalizacao
 function _personalizacao(){
-    #Alias local
-    i3pf="~/.config/i3/"
-    i3t="/tmp/i3wm"
-        if [[ ! -d "${i3t}" ]]; then # Verifica existencia da pasta /tmp/i3wm
+     if [[ ! -d "${i3t}" ]]; then # Verifica existencia da pasta /tmp/i3wm
             echo -e "${CIAN}[ ] Baixando configurações personalizadas ${NORM}"
             cd  /tmp && ${GG} https://github.com/thespation/i3wm
         fi
             if [[ -d "${i3pf}" ]]; then # Verifica existencia da pasta i3 no perfil do usuário
-                mv ${i3pf} ${i3pf}_BKP_${data_atual}
+                mv ${i3pf}/i3 ${i3pf}/i3_BKP_${data_atual}
             fi
-            echo -e "${CIAN}[ ] Copiando configurações para pasta correta ${NORM}"
-            mkdir -p ${i3pf} && cp -rf ${i3t}/i3* ${i3pf} && chmod +x ${i3pf}* -R
-	    cp -rf /tmp/i3wm/fonts ~/.local/share #Copia as fontes necessárias
+            echo -e "${CIAN}[ ] Copiar configurações para pasta correta ${NORM}"
+            mkdir -p ${i3pf}/i3 && cp -rf ${i3t}/i3/* ${i3pf}/i3 && chmod +x ${i3pf}/i3/* -R
+	    cp -rf /tmp/i3wm/fonts $HOME/.local/share &&
             echo -e "${VERD}[*] Configurações copiadas ${NORM}"
 }
-
 
 #Vefifica se está usando Debian ou derivado
 	clear
