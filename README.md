@@ -1,10 +1,6 @@
 # i3wm
 Configurações pessoais para i3wm na base Debian
 
-### Instalar de forma automática 
-````
-curl -s https://raw.githubusercontent.com/thespation/i3wm/main/instalar.sh | bash
-````
 ### Telas
 
 ![01](https://github.com/thespation/i3wm/assets/84329097/5043825d-d967-42e4-a460-75e410a95a45)
