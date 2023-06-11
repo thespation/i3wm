@@ -63,7 +63,7 @@ function _ksuperkey(){
             echo -e "\n${CIAN}[ ] Habilitar tecla Super para abrir menu" ${NORM}
                 cd /tmp && ${GG} https://github.com/hanschen/ksuperkey.git &&
                 cd ksuperkey
-                make && sudo make install &&
+                make && sudo make install
         fi
         echo -e "${VERD}[*] Tecla Super habilitada com sucesso" ${NORM}
         _lightdm #Chama a função  
