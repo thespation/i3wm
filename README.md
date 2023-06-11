@@ -7,12 +7,12 @@ curl -s https://raw.githubusercontent.com/thespation/i3wm/main/instalar.sh | bas
 ````
 ### Telas
 
-![01](https://github.com/thespation/i3wm/assets/84329097/76e51203-501d-43e7-a3ca-eaccf645a4ba)
-![02 2](https://github.com/thespation/i3wm/assets/84329097/e02e6535-335a-4f02-9bd9-dbdcbb96a263)
-![02 3](https://github.com/thespation/i3wm/assets/84329097/e14a3fc6-34df-4962-87fa-151faa5c7b6a)
-![02 4](https://github.com/thespation/i3wm/assets/84329097/804c242d-f60f-41f9-beed-caba28374d76)
-![02](https://github.com/thespation/i3wm/assets/84329097/e69288fe-10c5-43be-9b1f-6849712d36cb)
-![03](https://github.com/thespation/i3wm/assets/84329097/aa5c06a0-d6b0-49fd-b182-e3519199ca75)
-![04](https://github.com/thespation/i3wm/assets/84329097/925a508c-a837-475b-a2b5-650e03588a86)
-![05](https://github.com/thespation/i3wm/assets/84329097/80644fdb-43b8-4cdd-83c7-36220ad99c7d)
-![06](https://github.com/thespation/i3wm/assets/84329097/26043b93-db09-4657-bc68-63476b9df24d)
+![01](https://github.com/thespation/i3wm/assets/84329097/5043825d-d967-42e4-a460-75e410a95a45)
+![02 2](https://github.com/thespation/i3wm/assets/84329097/3d9b3e82-9461-418a-b225-e506aee668a9)
+![02 3](https://github.com/thespation/i3wm/assets/84329097/c9a94ffb-ff52-40e2-a927-dfdf50fc7ffd)
+![02 4](https://github.com/thespation/i3wm/assets/84329097/e991119b-50f6-4c6e-9991-99867a58a717)
+![02](https://github.com/thespation/i3wm/assets/84329097/4d42a836-2b6c-4da6-b082-d1c90a0d36fa)
+![03](https://github.com/thespation/i3wm/assets/84329097/3667730d-37fb-46f7-9259-48a50ecbad0d)
+![04](https://github.com/thespation/i3wm/assets/84329097/0d83cc15-0535-45ac-b7d8-e290f1273804)
+![05](https://github.com/thespation/i3wm/assets/84329097/ed1e387d-fd9b-4fe3-9dac-7125fb4d1a43)
+![06](https://github.com/thespation/i3wm/assets/84329097/f474642e-2608-4605-8c97-831176d3ce1f)
