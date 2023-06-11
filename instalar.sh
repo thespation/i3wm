@@ -112,7 +112,18 @@ function _personalizacao(){
             fi
             echo -e "${CIAN}[ ] Copiar configurações para pasta correta ${NORM}"
             mkdir -p ${i3pf}/i3 && cp -rf ${i3t}/i3/* ${i3pf}/i3 && chmod +x ${i3pf}/i3/* -R
-	    cp -rf /tmp/i3wm/fonts $HOME/.local/share &&
+	    cp -rf /tmp/i3wm/fonts $HOME/.local/share
+	    
+	    if [[ -f $HOME/.gtkrc-2.0 ]]; then # Verifica existencia o arquivo
+	    	mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0_BKP_${data_atual}
+		fi	
+			cp -rf /tmp/i3wm/config/.gtkrc-2.0 $HOME/.gtkrc-2.0
+			
+		if [[ -f $HOME/.config/gtk-3.0/settings.ini ]]; then # Verifica existencia o arquivo
+			mv ${i3pf}/gtk-3.0/settings.ini ${i3pf}/gtk-3.0/settings.ini_BKP_${data_atual}
+		fi	
+			cp -rf /tmp/i3wm/config/settings.ini ${i3pf}/gtk-3.0
+
             echo -e "${VERD}[*] Configurações copiadas ${NORM}"
 }
 
