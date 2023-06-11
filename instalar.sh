@@ -122,7 +122,7 @@ function _personalizacao(){
 		if [[ -f $HOME/.config/gtk-3.0/settings.ini ]]; then # Verifica existencia o arquivo
 			mv ${i3pf}/gtk-3.0/settings.ini ${i3pf}/gtk-3.0/settings.ini_BKP_${data_atual}
 		fi	
-			cp -rf /tmp/i3wm/config/settings.ini ${i3pf}/gtk-3.0
+			cp -rf ${i3t}/config/settings.ini ${i3pf}/gtk-3.0
 
             echo -e "${VERD}[*] Configurações copiadas ${NORM}"
 }
