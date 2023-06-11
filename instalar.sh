@@ -20,7 +20,7 @@ GG="git clone"
 #--Função: Atualizar espelhos--#
 declare -f _atualizar.sistema
 function _atualizar.sistema(){
-        echo -e "\n${CIAN}[ ] Atualizar sistema${NORM}"
+        echo -e "${CIAN}[ ] Atualizar sistema${NORM}"
             ${SA} update && ${SA} upgrade -y && ${SA} dist-upgrade -y && #Atualiza sistema
         echo -e "${VERD}[*] Sistema atualizado${NORM}"
         _instalar.programas #Chama a função     
@@ -98,7 +98,7 @@ declare -f _xinit
         _personalizacao #Chama a função
 }
 
-#--Função: Copir personalizações--#
+#--Função: Copiar personalizações--#
 declare -f _personalizacao
 function _personalizacao(){
     #Alias local
@@ -115,21 +115,8 @@ function _personalizacao(){
             mkdir -p ${i3pf} && cp -rf ${i3t}/i3* ${i3pf} && chmod +x ${i3pf}* -R
 	    cp -rf /tmp/i3wm/fonts ~/.local/share #Copia as fontes necessárias
             echo -e "${VERD}[*] Configurações copiadas ${NORM}"
-            _habilitar_sudo #Chama a função
 }
 
-#--Função: Adicionar usuário ao grupo sudo--#
-declare -f _habilitar_sudo
-function _habilitar_sudo(){
-        echo -e "\n${CIAN}[ ]Informe seu usuário para ser acrescentado ao grupo SUDO: ${NORM}"
-            read usuario;
-        if id -nG "${usuario}" | grep -qw "sudo"; then # Verifica se o usuário está no grupo sudo
-            echo -e "${VERD}[*] Usuário no grupo sudo ${NORM}"
-                else
-            gpasswd -a $usuario sudo #Lê o usuário informado e o inclui ao grupo sudo
-            echo -e "${VERM}[!] Falha ao adicionar usuário ao grupo sudo${NORM}"
-        fi
-}
 
 #Vefifica se está usando Debian ou derivado
 	clear
