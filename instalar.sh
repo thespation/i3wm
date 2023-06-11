@@ -64,7 +64,7 @@ function _ksuperkey(){
                 cd /tmp && ${GG} https://github.com/hanschen/ksuperkey.git &&
                 cd ksuperkey
                 make && sudo make install
-        fi
+	fi
         echo -e "${VERD}[*] Tecla Super habilitada com sucesso" ${NORM}
         _lightdm #Chama a função  
 }
