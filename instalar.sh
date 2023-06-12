@@ -103,41 +103,39 @@ declare -f _xinit
 #--Função: Copiar personalizações--#
 declare -f _personalizacao
 function _personalizacao(){
-     if [[ ! -d "${i3t}" ]]; then # Verifica existencia da pasta /tmp/i3wm
-            echo -e "${CIAN}[ ] Baixando configurações personalizadas ${NORM}"
-            cd  /tmp && ${GG} https://github.com/thespation/i3wm
+	if [[ ! -d "${i3t}" ]]; then # Verifica existencia da pasta /tmp/i3wm
+		echo -e "${CIAN}[ ] Baixando configurações personalizadas ${NORM}"
+		cd  /tmp && ${GG} https://github.com/thespation/i3wm
         fi
-            if [[ -d "${i3pf}" ]]; then # Verifica existencia da pasta i3 no perfil do usuário
-                mv ${i3pf}/i3 ${i3pf}/i3_BKP_${data_atual}
-            fi
-            echo -e "${CIAN}[ ] Copiar configurações para pasta correta ${NORM}"
-            mkdir -p ${i3pf}/i3 && cp -rf ${i3t}/i3/* ${i3pf}/i3 && chmod +x ${i3pf}/i3/* -R
-	    cp -rf /tmp/i3wm/fonts $HOME/.local/share
-	    
-	    if [[ -f $HOME/.gtkrc-2.0 ]]; then # Verifica existencia o arquivo
-	    	mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0_BKP_${data_atual}
-		fi	
-			cp -rf /tmp/i3wm/config/.gtkrc-2.0 $HOME/.gtkrc-2.0
-			
-		if [[ -f $HOME/.config/gtk-3.0/settings.ini ]]; then # Verifica existencia o arquivo
-			mv ${i3pf}/gtk-3.0/settings.ini ${i3pf}/gtk-3.0/settings.ini_BKP_${data_atual}
-		fi	
-			cp -rf ${i3t}/config/settings.ini ${i3pf}/gtk-3.0
-
-            echo -e "${VERD}[*] Configurações copiadas ${NORM}"
+	if [[ -d "${i3pf}" ]]; then # Verifica existencia da pasta i3 no perfil do usuário
+		mv ${i3pf}/i3 ${i3pf}/i3_BKP_${data_atual}
+		echo -e "${VERD}[*] Foi realizado um bkp da pasta \"~/.config/i3\" ${NORM}"
+	fi
+		echo -e "${CIAN}[ ] Copiar configurações para pastas corretas ${NORM}"
+		mkdir -p ${i3pf}/i3 && cp -rf ${i3t}/i3/* ${i3pf}/i3 && chmod +x ${i3pf}/i3/* -R
+		cp -rf ${i3t}/fonts $HOME/.local/share 
+	if [[ -f $HOME/.gtkrc-2.0 ]]; then # Verifica existencia o arquivo
+		mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0_BKP_${data_atual}
+	fi	
+		cp -rf ${i3t}/config/.gtkrc-2.0 $HOME/.gtkrc-2.0	
+	if [[ -f ${i3pf}/gtk-3.0/settings.ini ]]; then # Verifica existencia o arquivo
+		mv ${i3pf}/gtk-3.0/settings.ini ${i3pf}/gtk-3.0/settings.ini_BKP_${data_atual}
+	fi	
+		mkdir -p ${i3pf}/gtk-3.0 && cp -rf ${i3t}/config/settings.ini ${i3pf}/gtk-3.0/settings.ini
+		echo -e "${VERD}[*] Configurações copiadas ${NORM}"
 }
 
 #Vefifica se está usando Debian ou derivado
 	clear
-    if [ -f "/etc/debian_version" ]; then #Verifica a existencia do arquivo "debian_version" 
-        echo -e "\n${CIAN}[i] Script ${VERM}PESSOAL${CIAN} para instalação do i3wm na base Debian"
-        echo -e "[?] Prosseguir? (digite '${VERD}s${CIAN}' ou '${VERD}sim${CIAN}')${NORM}"
-            read resposta
-            if [[ ($resposta = "s" ) || ($resposta = "sim") || ($resposta = "S") || ($resposta = "SIM") ]]; then #Verifica resposta
-            _atualizar.sistema #Chama a função
-            else
-                echo -e "${VERM}[!] Instalação cancelada, não foi escolhida a opção correta para prosseguir.${NORM}"
-            fi
+	if [ -f "/etc/debian_version" ]; then #Verifica a existencia do arquivo "debian_version" 
+		echo -e "\n${CIAN}[i] Script ${VERM}PESSOAL${CIAN} para instalação do i3wm na base Debian"
+		echo -e "[?] Prosseguir? (digite '${VERD}s${CIAN}' ou '${VERD}sim${CIAN}')${NORM}"
+            	read resposta
+	if [[ ($resposta = "s" ) || ($resposta = "sim") || ($resposta = "S") || ($resposta = "SIM") ]]; then #Verifica resposta
+		_atualizar.sistema #Chama a função
+	else
+		echo -e "${VERM}[!] Instalação cancelada, não foi escolhida a opção correta para prosseguir.${NORM}"
+	fi
     else
         echo -e "${VERM}[!] Esse script PESSOAL foi desenvolvido para rodar no Debian e seus derivados.${NORM}"
 fi
