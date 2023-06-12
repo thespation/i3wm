@@ -18,7 +18,6 @@ data_atual=$(date +"%Y%m%d%H%M%S")	#Define a data e hora
 GG="git clone"				#Comando para baixar arquivos git
 i3pf="$HOME/.config"			#Endereço das configurações
 i3t="/tmp/i3wm"				#Pasta temporária
-ldm="/etc/lightdm/lightdm-gtk-greeter.conf"	#Caminho de configurção do lightDM
 
 #--Função: Atualizar espelhos--#
 declare -f _atualizar.sistema
@@ -77,6 +76,7 @@ declare -f _lightdm
 function _lightdm(){
     #Alias locais
     lightdm="/etc/lightdm/lightdm.conf" #Local do arquivo original
+    ldm="/etc/lightdm/lightdm-gtk-greeter.conf"	#Caminho de configurção do lightDM
             
     if [ -f "${lightdm}" ]; then #Verifica a existência do arquivo de configuração
         echo -e "\n${CIAN}[ ] Criando backup do arquivo 'lightdm.conf"${NORM}
@@ -84,7 +84,12 @@ function _lightdm(){
         echo -e "${VERD}[*] Backup criado com sucesso"
             sudo sed -i 's/^#greeter-hide-users=false/greeter-hide-users=false/g' ${lightdm} #Descomenta a linha
         echo -e "${VERD}[*] Arquivo lightdm.conf modificado"${NORM}
-    fi      
+    fi
+    #Personalização da tela de login - lightdm
+	if [[ -f ${ldm} ]]; then # Verifica existencia o arquivo
+		mv ${ldm} ${ldm}_BKP_${data_atual}
+	sudo cp -rf  ${i3t}/config/lightdm-gtk-greeter.conf ${ldm}
+	fi  
     _xinit #Chama a função
 }
 
@@ -127,12 +132,7 @@ function _personalizacao(){
 		mv ${i3pf}/gtk-3.0/settings.ini ${i3pf}/gtk-3.0/settings.ini_BKP_${data_atual}
 	fi	
 		mkdir -p ${i3pf}/gtk-3.0 && cp -rf ${i3t}/config/settings.ini ${i3pf}/gtk-3.0/settings.ini
-	#Personalização da tela de login - lightdm
-	if [[ -f ${ldm} ]]; then # Verifica existencia o arquivo
-		mv ${ldm} ${ldm}_BKP_${data_atual}
-	sudo cp -rf  ${i3t}/config/lightdm-gtk-greeter.conf ${ldm}
-	fi
-		echo -e "${VERD}[*] Configurações copiadas ${NORM}"
+        echo -e "${VERD}[*] Configurações copiadas ${NORM}"
 }
 
 #Vefifica se está usando Debian ou derivado
