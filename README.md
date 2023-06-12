@@ -12,6 +12,10 @@ Caso queira apenas copiar os arquivos e utilizar em seu i3 já instalado, é nec
 
 >**Note**: i3blocks precisa estar na versão ≥ 1.5.0 (não foi utilizado `polybar`).
 
+### Instalação automatizada
+````
+curl -s https://raw.githubusercontent.com/thespation/i3wm/main/instalar.sh | bash
+````
 
 ### Telas
 
