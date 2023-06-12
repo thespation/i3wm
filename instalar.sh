@@ -9,15 +9,14 @@ VERD="\033[0;32m"	#Deixa a saída na cor verde
 VERM="\033[1;31m"	#Deixa a saída na cor vermelho
 
 ## Alias
-SI="sudo apt install -y"		#Comando para instalar novos pacotes
-SA="sudo apt"				#Usado para atualizar sistema
+SI="sudo apt install -y"		    #Comando para instalar novos pacotes
+SA="sudo apt"				        #Usado para atualizar sistema
 data_atual=$(date +"%Y%m%d%H%M%S")	#Define a data e hora atual
-lightdm="/etc/lightdm/lightdm.conf"	#Endereço completo do arquivo de configuração
 GITH="https://raw.githubusercontent.com/thespation/dpux_bspwm/main/scripts/" #Endereço do script (tema e ícone)
 data_atual=$(date +"%Y%m%d%H%M%S")	#Define a data e hora 
-GG="git clone"				#Comando para baixar arquivos git
-i3pf="$HOME/.config"			#Endereço das configurações
-i3t="/tmp/i3wm"				#Pasta temporária
+GG="git clone"				        #Comando para baixar arquivos git
+i3pf="$HOME/.config"		        #Endereço das configurações
+i3t="/tmp/i3wm"				        #Pasta temporária
 
 #--Função: Atualizar espelhos--#
 declare -f _atualizar.sistema
@@ -78,17 +77,17 @@ function _lightdm(){
     lightdm="/etc/lightdm/lightdm.conf" #Local do arquivo original
     ldm="/etc/lightdm/lightdm-gtk-greeter.conf"	#Caminho de configurção do lightDM
             
-    if [ -f "${lightdm}" ]; then #Verifica a existência do arquivo de configuração
+    if [[ -f "${lightdm}" ]]; then #Verifica a existência do arquivo de configuração
         echo -e "\n${CIAN}[ ] Criando backup do arquivo 'lightdm.conf"${NORM}
             sudo cp ${lightdm} ${lightdm}_BKP_${data_atual} &&
         echo -e "${VERD}[*] Backup criado com sucesso"
             sudo sed -i 's/^#greeter-hide-users=false/greeter-hide-users=false/g' ${lightdm} #Descomenta a linha
-        echo -e "${VERD}[*] Arquivo lightdm.conf modificado"${NORM}
     fi
     #Personalização da tela de login - lightdm
 	if [[ -f ${ldm} ]]; then # Verifica existencia o arquivo
 		mv ${ldm} ${ldm}_BKP_${data_atual}
 	sudo cp -rf  ${i3t}/config/lightdm-gtk-greeter.conf ${ldm}
+    echo -e "${VERD}[*] lightdm configurado"${NORM}
 	fi  
     _xinit #Chama a função
 }
@@ -97,7 +96,7 @@ function _lightdm(){
 declare -f _xinit
     function _xinit(){
         echo -e "\n${CIAN}[ ] Habilitar inicialização do i3${NORM}"
-        if [ ! -f ~/.xinitrc ]; then #Verifica a existência do arquivo de configuração
+        if [[ ! -f ~/.xinitrc ]]; then #Verifica a existência do arquivo de configuração
             cp /etc/X11/xinit/xinitrc ~/.xinitrc
         fi
         sed -i 's/^exec xterm -geometry 80x66+0+0 -name login/#exec xterm -geometry 80x66+0+0 -name login/' ~/.xinitrc
@@ -137,8 +136,8 @@ function _personalizacao(){
 
 #Vefifica se está usando Debian ou derivado
 	clear
-	if [ -f "/etc/debian_version" ]; then #Verifica a existencia do arquivo "debian_version" 
-		echo -e "\n${CIAN}[i] Script ${VERM}PESSOAL${CIAN} para instalação do i3wm no Debian 12"
+	if [[ -f "/etc/debian_version" ]]; then #Verifica a existencia do arquivo "debian_version" 
+		echo -e "${CIAN}[i] Script ${VERM}PESSOAL${CIAN} para instalação do i3wm no Debian 12"
 		echo -e "\n${CIAN}[!] Instalação começará em ${VERM}10 segundos${CIAN}, para cancelar pressione: \"${VERM}Ctrl+c\"${NORM}"
 		sleep 10
 		_atualizar.sistema #Chama a função
