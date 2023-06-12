@@ -139,9 +139,8 @@ function _personalizacao(){
 	clear
 	if [ -f "/etc/debian_version" ]; then #Verifica a existencia do arquivo "debian_version" 
 		echo -e "\n${CIAN}[i] Script ${VERM}PESSOAL${CIAN} para instalação do i3wm na base Debian"
-		echo -e "[?] Prosseguir? (digite '${VERD}s${CIAN}' ou '${VERD}sim${CIAN}')${NORM}"
-            	read resposta
-	if [[ ($resposta = "s" ) || ($resposta = "sim") || ($resposta = "S") || ($resposta = "SIM") ]]; then #Verifica resposta
+		echo -e "\n${CIAN}[!] Instalação começará em ${VERM}10 segundos${CIAN}, para cancelar pressione ${VERM}Ctrl+c${NORM}"
+		sleep 10
 		_atualizar.sistema #Chama a função
 	else
 		echo -e "${VERM}[!] Instalação cancelada, não foi escolhida a opção correta para prosseguir.${NORM}"
