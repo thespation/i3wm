@@ -18,6 +18,7 @@ data_atual=$(date +"%Y%m%d%H%M%S")	#Define a data e hora
 GG="git clone"				#Comando para baixar arquivos git
 i3pf="$HOME/.config"			#Endereço das configurações
 i3t="/tmp/i3wm"				#Pasta temporária
+ldm="/etc/lightdm/lightdm-gtk-greeter.conf"	#Caminho de configurção do lightDM
 
 #--Função: Atualizar espelhos--#
 declare -f _atualizar.sistema
@@ -103,10 +104,12 @@ declare -f _xinit
 #--Função: Copiar personalizações--#
 declare -f _personalizacao
 function _personalizacao(){
+	#Baixa as novas configurações para a pasta "/tmp/i3wm"
 	if [[ ! -d "${i3t}" ]]; then # Verifica existencia da pasta /tmp/i3wm
 		echo -e "${CIAN}[ ] Baixando configurações personalizadas ${NORM}"
 		cd  /tmp && ${GG} https://github.com/thespation/i3wm
         fi
+	#Caso tenha a pasta "~/.config/i3" vai fazer bkp antes de copiar novas configurações
 	if [[ -d "${i3pf}" ]]; then # Verifica existencia da pasta i3 no perfil do usuário
 		mv ${i3pf}/i3 ${i3pf}/i3_BKP_${data_atual}
 		echo -e "${VERD}[*] Foi realizado um bkp da pasta \"~/.config/i3\" ${NORM}"
@@ -114,14 +117,21 @@ function _personalizacao(){
 		echo -e "${CIAN}[ ] Copiar configurações para pastas corretas ${NORM}"
 		mkdir -p ${i3pf}/i3 && cp -rf ${i3t}/i3/* ${i3pf}/i3 && chmod +x ${i3pf}/i3/* -R
 		cp -rf ${i3t}/fonts $HOME/.local/share 
+	#Cria bkp do arquivo "$HOME/.gtkrc-2.0" antes de copiar o novo
 	if [[ -f $HOME/.gtkrc-2.0 ]]; then # Verifica existencia o arquivo
 		mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0_BKP_${data_atual}
 	fi	
-		cp -rf ${i3t}/config/.gtkrc-2.0 $HOME/.gtkrc-2.0	
+		cp -rf ${i3t}/config/.gtkrc-2.0 $HOME/.gtkrc-2.0
+	#Cria bkp do arquivo "~/.config/gtk-3.0/settings.ini" antes de copiar o novo
 	if [[ -f ${i3pf}/gtk-3.0/settings.ini ]]; then # Verifica existencia o arquivo
 		mv ${i3pf}/gtk-3.0/settings.ini ${i3pf}/gtk-3.0/settings.ini_BKP_${data_atual}
 	fi	
 		mkdir -p ${i3pf}/gtk-3.0 && cp -rf ${i3t}/config/settings.ini ${i3pf}/gtk-3.0/settings.ini
+	#Personalização da tela de login - lightdm
+	if [[ -f ${ldm} ]]; then # Verifica existencia o arquivo
+		mv ${ldm} ${ldm}_BKP_${data_atual}
+	sudo cp -rf  ${i3t}/config/lightdm-gtk-greeter.conf ${ldm}
+	fi
 		echo -e "${VERD}[*] Configurações copiadas ${NORM}"
 }
 
