@@ -138,13 +138,10 @@ function _personalizacao(){
 #Vefifica se está usando Debian ou derivado
 	clear
 	if [ -f "/etc/debian_version" ]; then #Verifica a existencia do arquivo "debian_version" 
-		echo -e "\n${CIAN}[i] Script ${VERM}PESSOAL${CIAN} para instalação do i3wm na base Debian"
-		echo -e "\n${CIAN}[!] Instalação começará em ${VERM}10 segundos${CIAN}, para cancelar pressione ${VERM}Ctrl+c${NORM}"
+		echo -e "\n${CIAN}[i] Script ${VERM}PESSOAL${CIAN} para instalação do i3wm no Debian 12"
+		echo -e "\n${CIAN}[!] Instalação começará em ${VERM}10 segundos${CIAN}, para cancelar pressione: \"${VERM}Ctrl+c\"${NORM}"
 		sleep 10
 		_atualizar.sistema #Chama a função
 	else
-		echo -e "${VERM}[!] Instalação cancelada, não foi escolhida a opção correta para prosseguir.${NORM}"
-	fi
-    else
-        echo -e "${VERM}[!] Esse script PESSOAL foi desenvolvido para rodar no Debian e seus derivados.${NORM}"
+		echo -e "${VERM}[!] Esse script PESSOAL foi desenvolvido para rodar no Debian e seus derivados.${NORM}"        
 fi
