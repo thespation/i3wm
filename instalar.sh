@@ -20,10 +20,10 @@ data_atual=$(date +"%Y%m%d%H%M%S")
 # Listas de pacotes e URLs
 declare -a PACOTES=(
     i3 xorg i3status lightdm i3lock xsettingsd xfce4-power-manager network-manager sudo
-    dmenu rofi alacritty nm-tray nitrogen feh lxappearance picom thunar tumbler
+    suckless-tools rofi alacritty nm-tray nitrogen feh lxappearance picom thunar tumbler
     thunar-archive-plugin thunar-volman dh-autoreconf make maim python3-pip git curl
     python3-i3ipc xdg-user-dirs htop neofetch viewnior cargo xclip yad catfish baobab
-    meld xarchiver geany alsa-utils pulseaudio pacucontrol pulsemixer gcc make libx11-dev
+    meld xarchiver geany alsa-utils pulseaudio pavucontrol pulsemixer gcc make libx11-dev
     libxtst-dev pkg-config sysstat ranger vim hsetroot sysvinit-utils psmisc ncal
 )
 
