@@ -116,7 +116,7 @@ personalizacao() {
 clear
 if [[ -f "/etc/debian_version" ]]; then
     echo -e "${CIAN}[i] Script ${VERM}PESSOAL${CIAN} para instalação do i3wm no Debian 12"
-    echo -e "\n${CIAN}[!] Instalação começará em ${VERM}10 segundos${CIAN}, para cancelar pressione: \"${VERM}Ctrl+c\"${NORM}"
+    echo -e "${CIAN}[!] Instalação começará em ${VERM}10 segundos${CIAN}, para cancelar pressione: \"${VERM}Ctrl+c\"${NORM}\n"
     sleep 10
     atualizar_sistema
 else
