@@ -6,7 +6,7 @@ Configurações pessoais para i3wm na base Debian
 ## Arquivos de configuração
 Caso queira apenas copiar os arquivos e utilizar em seu i3 já instalado, é necessário ter:
 * `i3`, `rofi`, `alacritty`, `picom`, `thunar`, `viewnior`, `xclip`, `geany` e `i3blocks`.
-  * [Visualizar lista completa](https://github.com/thespation/i3wm/blob/bf72cc37b5a76d4a66c95ae4c930b8cb2301a9c7/instalar.sh#L36)
+  * [Visualizar lista completa](https://github.com/thespation/i3wm/blob/fa34dd91ebdda9c53056618e1d0b25c4fd4d8d14/instalar.sh#L22)
 
 > **Note**: i3blocks precisa estar na versão ≥ 1.5.0 (não foi utilizado `polybar`).
 
