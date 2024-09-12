@@ -47,7 +47,7 @@ instalar_programas() {
         cd /tmp && ${GG} https://github.com/vivien/i3blocks
         cd i3blocks && chmod +x autogen.sh && ./autogen.sh && ./configure && make && sudo make install
     fi
-    echo -e "\n${VERD}[*] i3blocks instalada${NORM}"
+    echo -e "\n${VERD}[*] i3blocks instalada${NORM}\n"
 
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
     
@@ -71,8 +71,8 @@ ksuperkey() {
 
 # Função: Configurar LightDM
 lightdm() {
-    lightdm_conf="/etc/lightdm/lightdm.conf"
-    ldm_conf="/etc/lightdm/lightdm-gtk-greeter.conf"
+    lightdm_conf='/etc/lightdm/lightdm.conf'
+    ldm_conf='/etc/lightdm/lightdm-gtk-greeter.conf'
 
     [[ -f "${lightdm_conf}" ]] && {
         echo -e "\n${CIAN}[ ] Habilitar último login usado${NORM}"
@@ -83,6 +83,7 @@ lightdm() {
 
     [[ -f ${ldm_conf} ]] && {
         echo -e "\n${CIAN}[ ] Criando backup de lightdm.conf${NORM}"
+        sudo chmod 755 ${i3t}
         sudo mv ${ldm_conf} ${ldm_conf}_BKP_${data_atual}
         sudo cp -rf ${i3t}/config/lightdm-gtk-greeter.conf ${ldm_conf}
         sudo cp -rf ${i3t}/i3/wallpapers/mono.png /usr/share/images/desktop-base/wallpaper.jpg
@@ -109,19 +110,18 @@ personalizacao() {
     [[ -d "${i3pf}/i3" ]] && mv ${i3pf}/i3 ${i3pf}/i3_BKP_${data_atual}
     mkdir -p ${i3pf}/i3 && cp -rf ${i3t}/i3/* ${i3pf}/i3 && chmod +x ${i3pf}/i3/* -R
     cp -rf ${i3t}/fonts $HOME/.local/share
-
-    echo -e "\n${CIAN}[ ] Atualizar fontes${NORM}"
-    fc-cache -f -v && i3 reload
-    echo -e "${VERD}[*] Fontes do sistema atualizadas${NORM}"
-
+    
     [[ -f $HOME/.gtkrc-2.0 ]] && mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0_BKP_${data_atual}
     cp -rf ${i3t}/config/.gtkrc-2.0 $HOME/.gtkrc-2.0
 
     mkdir -p ${i3pf}/gtk-3.0
     [[ -f ${i3pf}/gtk-3.0/settings.ini ]] && mv ${i3pf}/gtk-3.0/settings.ini ${i3pf}/gtk-3.0/settings.ini_BKP_${data_atual}
     cp -rf ${i3t}/config/settings.ini ${i3pf}/gtk-3.0/settings.ini
-
     echo -e "${VERD}[*] Configurações copiadas${NORM}"
+
+    echo -e "\n${CIAN}[ ] Atualizar fontes${NORM}"
+    fc-cache -f -v && i3 reload
+    echo -e "${VERD}[*] Fontes do sistema atualizadas${NORM}\n"
 }
 
 # Verifica se está usando Debian ou derivado
