@@ -48,6 +48,9 @@ instalar_programas() {
         cd i3blocks && chmod +x autogen.sh && ./autogen.sh && ./configure && make && sudo make install
     fi
     echo -e "\n${VERD}[*] i3blocks instalada${NORM}"
+
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+    
     ksuperkey
 }
 
@@ -101,9 +104,9 @@ xinit() {
 
 # Função: Copiar personalizações
 personalizacao() {
-    [[ ! -d "${i3t}" ]] && cd /tmp && ${GG} https://github.com/thespation/i3wm
     echo -e "\n${CIAN}[ ] Copiar personalizações${NORM}"
-
+    [[ ! -d "${i3t}" ]] && cd /tmp && ${GG} https://github.com/thespation/i3wm
+    
     [[ -d "${i3pf}/i3" ]] && mv ${i3pf}/i3 ${i3pf}/i3_BKP_${data_atual}
     mkdir -p ${i3pf}/i3 && cp -rf ${i3t}/i3/* ${i3pf}/i3 && chmod +x ${i3pf}/i3/* -R
     cp -rf ${i3t}/fonts $HOME/.local/share
