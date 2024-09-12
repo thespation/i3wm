@@ -74,6 +74,7 @@ ksuperkey() {
 lightdm() {
     lightdm_conf='/etc/lightdm/lightdm.conf'
     ldm_conf='/etc/lightdm/lightdm-gtk-greeter.conf'
+    ldm_pas='/etc/lightdm/lightdm-gtk-greeter.conf'
 
     [[ -f "${lightdm_conf}" ]] && {
         sudo cp ${lightdm_conf} ${lightdm_conf}_BKP_${data_atual}
@@ -85,8 +86,8 @@ lightdm() {
         echo -e "\n${CIAN}[ ] Criando backup de lightdm.conf${NORM}"
         sudo chmod 755 ${i3t}
         sudo mv ${ldm_conf} ${ldm_conf}_BKP_${data_atual}
-        sudo cp -rf ${i3t}/config/lightdm-gtk-greeter.conf ${ldm_conf}
-        sudo cp -rf ${i3t}/i3/wallpapers/mono.png /usr/share/images/desktop-base/wallpaper.jpg
+        sudo cp -rf ${i3t}/config/lightdm-gtk-greeter.conf ${ldm_pas}
+        sudo cp ${i3t}/i3/wallpapers/mono.png /usr/share/images/desktop-base/wallpaper.jpg
         echo -e "${VERD}[*] lightdm configurado${NORM}"
     }
 
