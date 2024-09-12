@@ -16,6 +16,7 @@ GITH="https://raw.githubusercontent.com/thespation/dpux_bspwm/main/scripts/"
 i3pf="$HOME/.config"
 i3t="/tmp/i3wm"
 data_atual=$(date +"%Y%m%d%H%M%S")
+reload="i3 reload"
 
 # Listas de pacotes e URLs
 declare -a PACOTES=(
@@ -119,7 +120,7 @@ personalizacao() {
     echo -e "${VERD}[*] Configurações copiadas${NORM}"
 
     echo -e "\n${CIAN}[ ] Atualizar fontes${NORM}"
-    fc-cache -f -v && {i3 reload}
+    fc-cache -f -v && ${reload}
     echo -e "${VERD}[*] Fontes do sistema atualizadas${NORM}\n"
 }
 
