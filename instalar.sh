@@ -47,7 +47,7 @@ instalar_programas() {
         cd /tmp && ${GG} https://github.com/vivien/i3blocks
         cd i3blocks && chmod +x autogen.sh && ./autogen.sh && ./configure && make && sudo make install
     fi
-    echo -e "\n${VERD}[*] i3blocks instalada${NORM}\n"
+    echo -e "\n${VERD}[*] i3blocks instalado${NORM}\n\n"
 
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
     
@@ -75,7 +75,6 @@ lightdm() {
     ldm_conf='/etc/lightdm/lightdm-gtk-greeter.conf'
 
     [[ -f "${lightdm_conf}" ]] && {
-        echo -e "\n${CIAN}[ ] Habilitar último login usado${NORM}"
         sudo cp ${lightdm_conf} ${lightdm_conf}_BKP_${data_atual}
         sudo sed -i 's/^#greeter-hide-users=false/greeter-hide-users=false/' ${lightdm_conf}
         echo -e "${VERD}[*] Usuário habilitado na tela de login${NORM}"
