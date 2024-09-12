@@ -53,6 +53,7 @@ instalar_programas() {
 
 # Função: Habilitar tecla Super para abrir menu
 ksuperkey() {
+    echo -e "\n${CIAN}[ ] Habilitar ksuperkey${NORM}"
     if [[ ! -d "/tmp/ksuperkey" ]]; then
         echo -e "\n${CIAN}[ ] Habilitar tecla Super${NORM}"
         cd /tmp && ${GG} https://github.com/hanschen/ksuperkey.git
@@ -102,6 +103,7 @@ xinit() {
 # Função: Copiar personalizações
 personalizacao() {
     [[ ! -d "${i3t}" ]] && cd /tmp && ${GG} https://github.com/thespation/i3wm
+    echo -e "\n${CIAN}[ ] Copiar personalizações${NORM}"
 
     [[ -d "${i3pf}/i3" ]] && mv ${i3pf}/i3 ${i3pf}/i3_BKP_${data_atual}
     mkdir -p ${i3pf}/i3 && cp -rf ${i3t}/i3/* ${i3pf}/i3 && chmod +x ${i3pf}/i3/* -R
