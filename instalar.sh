@@ -42,8 +42,8 @@ instalar_programas() {
     echo -e "${VERD}[*] Aplicativos instalados${NORM}"
     xdg-user-dirs-update
 
-    echo -e "\n${CIAN}[ ] Compilar e instalar i3blocks${NORM}"
     if [[ ! -d "/tmp/i3blocks" ]]; then
+    echo -e "\n${CIAN}[ ] Compilar e instalar i3blocks${NORM}"
         cd /tmp && ${GG} https://github.com/vivien/i3blocks
         cd i3blocks && chmod +x autogen.sh && ./autogen.sh && ./configure && make && sudo make install
     fi
@@ -59,7 +59,7 @@ ksuperkey() {
         cd /tmp && ${GG} https://github.com/hanschen/ksuperkey.git
         cd ksuperkey && make && sudo make install
     fi
-    echo -e "${VERD}[*] Tecla Super habilitada${NORM}"
+    echo -e "\n${VERD}[*] Tecla Super habilitada${NORM}"
 
     curl -s ${GITH}temas.sh | bash
     curl -s ${GITH}icones.sh | bash
@@ -81,7 +81,7 @@ lightdm() {
 
     [[ -f ${ldm_conf} ]] && {
         echo -e "\n${CIAN}[ ] Criando backup de lightdm.conf${NORM}"
-        mv ${ldm_conf} ${ldm_conf}_BKP_${data_atual}
+        sudo mv ${ldm_conf} ${ldm_conf}_BKP_${data_atual}
         sudo cp -rf ${i3t}/config/lightdm-gtk-greeter.conf ${ldm_conf}
         sudo cp -rf ${i3t}/i3/wallpapers/mono.png /usr/share/images/desktop-base/wallpaper.jpg
         echo -e "${VERD}[*] lightdm configurado${NORM}"
@@ -92,7 +92,6 @@ lightdm() {
 
 # Função: Habilitar inicialização do i3
 xinit() {
-    echo -e "\n${CIAN}[ ] Habilitar inicialização do i3${NORM}"
     [[ ! -f ~/.xinitrc ]] && cp /etc/X11/xinit/xinitrc ~/.xinitrc
     sed -i 's/^exec xterm -geometry 80x66+0+0 -name login/#exec xterm -geometry 80x66+0+0 -name login/' ~/.xinitrc
     echo "exec i3" >> ~/.xinitrc
