@@ -56,9 +56,8 @@ instalar_programas() {
 
 # Função: Habilitar tecla Super para abrir menu
 ksuperkey() {
-    echo -e "\n${CIAN}[ ] Habilitar ksuperkey${NORM}"
+    echo -e "\n${CIAN}[ ] Habilitar tecla Super${NORM}"
     if [[ ! -d "/tmp/ksuperkey" ]]; then
-        echo -e "\n${CIAN}[ ] Habilitar tecla Super${NORM}"
         cd /tmp && ${GG} https://github.com/hanschen/ksuperkey.git
         cd ksuperkey && make && sudo make install
     fi
