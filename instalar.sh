@@ -80,7 +80,7 @@ lightdm() {
         echo -e "\n${VERD}[*] Usuário habilitado na tela de login${NORM}"
     }
 
-    [[ -f ${ldm_conf} ]] && {
+    [[ -f "${ldm_conf}" ]] && {
         echo -e "\n${CIAN}[ ] Criando backup de lightdm.conf${NORM}"
         sudo chmod 755 ${i3t}
         sudo mv ${ldm_conf} ${ldm_conf}_BKP_${data_atual}
