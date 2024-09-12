@@ -47,7 +47,7 @@ instalar_programas() {
         cd /tmp && ${GG} https://github.com/vivien/i3blocks
         cd i3blocks && chmod +x autogen.sh && ./autogen.sh && ./configure && make && sudo make install
     fi
-    echo -e "${VERD}[*] i3blocks instalada${NORM}"
+    echo -e "\n${VERD}[*] i3blocks instalada${NORM}"
     ksuperkey
 }
 
@@ -59,7 +59,7 @@ ksuperkey() {
         cd /tmp && ${GG} https://github.com/hanschen/ksuperkey.git
         cd ksuperkey && make && sudo make install
     fi
-    echo -e "\n${VERD}[*] Tecla Super habilitada${NORM}"
+    echo -e "${VERD}[*] Tecla Super habilitada${NORM}"
 
     curl -s ${GITH}temas.sh | bash
     curl -s ${GITH}icones.sh | bash
@@ -106,7 +106,11 @@ personalizacao() {
 
     [[ -d "${i3pf}/i3" ]] && mv ${i3pf}/i3 ${i3pf}/i3_BKP_${data_atual}
     mkdir -p ${i3pf}/i3 && cp -rf ${i3t}/i3/* ${i3pf}/i3 && chmod +x ${i3pf}/i3/* -R
-    cp -rf ${i3t}/fonts $HOME/.local/share 
+    cp -rf ${i3t}/fonts $HOME/.local/share
+
+    echo -e "\n${CIAN}[ ] Atualizar fontes${NORM}"
+    fc-cache -f -v && i3 reload
+    echo -e "${VERD}[*] Fontes do sistema atualizadas${NORM}"
 
     [[ -f $HOME/.gtkrc-2.0 ]] && mv $HOME/.gtkrc-2.0 $HOME/.gtkrc-2.0_BKP_${data_atual}
     cp -rf ${i3t}/config/.gtkrc-2.0 $HOME/.gtkrc-2.0
