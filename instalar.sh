@@ -21,7 +21,7 @@ data_atual=$(date +"%Y%m%d%H%M%S")
 declare -a PACOTES=(
     i3 xorg i3status lightdm i3lock xsettingsd xfce4-power-manager network-manager sudo
     suckless-tools rofi alacritty nm-tray nitrogen feh lxappearance picom thunar tumbler
-    thunar-archive-plugin thunar-volman dh-autoreconf make maim python3-pip git curl
+    thunar-archive-plugin thunar-volman dh-autoreconf make maim python3-pip git curl arandr
     python3-i3ipc xdg-user-dirs htop neofetch viewnior cargo xclip yad catfish baobab
     meld xarchiver geany alsa-utils pulseaudio pavucontrol pulsemixer gcc make libx11-dev
     libxtst-dev pkg-config sysstat ranger vim hsetroot sysvinit-utils psmisc ncal
@@ -47,7 +47,7 @@ instalar_programas() {
         cd /tmp && ${GG} https://github.com/vivien/i3blocks
         cd i3blocks && chmod +x autogen.sh && ./autogen.sh && ./configure && make && sudo make install
     fi
-    echo -e "\n${VERD}[*] i3blocks instalado${NORM}\n\n"
+    echo -e "${VERD}[*] i3blocks instalado${NORM}\n"
 
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
     
@@ -77,7 +77,7 @@ lightdm() {
     [[ -f "${lightdm_conf}" ]] && {
         sudo cp ${lightdm_conf} ${lightdm_conf}_BKP_${data_atual}
         sudo sed -i 's/^#greeter-hide-users=false/greeter-hide-users=false/' ${lightdm_conf}
-        echo -e "${VERD}[*] Usuário habilitado na tela de login${NORM}"
+        echo -e "\n${VERD}[*] Usuário habilitado na tela de login${NORM}"
     }
 
     [[ -f ${ldm_conf} ]] && {
@@ -119,7 +119,7 @@ personalizacao() {
     echo -e "${VERD}[*] Configurações copiadas${NORM}"
 
     echo -e "\n${CIAN}[ ] Atualizar fontes${NORM}"
-    fc-cache -f -v && i3 reload
+    fc-cache -f -v && {i3 reload}
     echo -e "${VERD}[*] Fontes do sistema atualizadas${NORM}\n"
 }
 
