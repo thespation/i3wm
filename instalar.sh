@@ -39,16 +39,15 @@ atualizar_sistema() {
 instalar_programas() {
     echo -e "\n${CIAN}[ ] Instalando programas${NORM}"
     ${SI} "${PACOTES[@]}"
+    echo -e "${VERD}[*] Aplicativos instalados${NORM}"
     xdg-user-dirs-update
 
+    echo -e "\n${CIAN}[ ] Compilar e instalar i3blocks${NORM}"
     if [[ ! -d "/tmp/i3blocks" ]]; then
         cd /tmp && ${GG} https://github.com/vivien/i3blocks
         cd i3blocks && chmod +x autogen.sh && ./autogen.sh && ./configure && make && sudo make install
     fi
-
-    echo -e "${VERD}[*] Aplicativos instalados${NORM}"
-    curl -s ${GITH}temas.sh | bash
-    curl -s ${GITH}icones.sh | bash
+    echo -e "${VERD}[*] i3blocks instalada${NORM}"
     ksuperkey
 }
 
@@ -60,21 +59,27 @@ ksuperkey() {
         cd ksuperkey && make && sudo make install
     fi
     echo -e "${VERD}[*] Tecla Super habilitada${NORM}"
+
+    curl -s ${GITH}temas.sh | bash
+    curl -s ${GITH}icones.sh | bash
+    
     lightdm
 }
 
 # Função: Configurar LightDM
 lightdm() {
-    local lightdm_conf="/etc/lightdm/lightdm.conf"
-    local ldm_conf="/etc/lightdm/lightdm-gtk-greeter.conf"
+    lightdm_conf="/etc/lightdm/lightdm.conf"
+    ldm_conf="/etc/lightdm/lightdm-gtk-greeter.conf"
 
     [[ -f "${lightdm_conf}" ]] && {
-        echo -e "\n${CIAN}[ ] Criando backup de lightdm.conf${NORM}"
+        echo -e "\n${CIAN}[ ] Habilitar último login usado${NORM}"
         sudo cp ${lightdm_conf} ${lightdm_conf}_BKP_${data_atual}
         sudo sed -i 's/^#greeter-hide-users=false/greeter-hide-users=false/' ${lightdm_conf}
+        echo -e "${VERD}[*] Usuário habilitado na tela de login${NORM}"
     }
 
     [[ -f ${ldm_conf} ]] && {
+        echo -e "\n${CIAN}[ ] Criando backup de lightdm.conf${NORM}"
         mv ${ldm_conf} ${ldm_conf}_BKP_${data_atual}
         sudo cp -rf ${i3t}/config/lightdm-gtk-greeter.conf ${ldm_conf}
         sudo cp -rf ${i3t}/i3/wallpapers/mono.png /usr/share/images/desktop-base/wallpaper.jpg
