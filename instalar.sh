@@ -84,13 +84,13 @@ lightdm() {
     }
 
     [[ -f "${ldm_conf}" ]] && {
-        echo -e "\n${CIAN}[ ] Criando backup de lightdm.conf${NORM}"
-        sudo chmod 755 ${i3t}
-        sudo mv ${ldm_conf} ${ldm_conf}_BKP_${data_atual}
-        sudo cp -rf ${i3t}/config/lightdm-gtk-greeter.conf ${ldm_pas}
-        sudo cp ${i3t}/i3/wallpapers/mono.png /usr/share/images/desktop-base/wallpaper.jpg
-        echo -e "${VERD}[*] lightdm configurado${NORM}"
+        echo -e "${VERD}[*] Backup de lightdm.conf criado${NORM}"
+        sudo mv ${ldm_conf} ${ldm_conf}_BKP_${data_atual}        
     }
+    sudo chmod 755 ${i3t}
+    sudo cp -rf ${i3t}/config/lightdm-gtk-greeter.conf ${ldm_pas}
+    sudo cp ${i3t}/i3/wallpapers/mono.png /usr/share/images/desktop-base/wallpaper.jpg
+    echo -e "${VERD}[*] lightdm configurado${NORM}"
 
     xinit
 }
