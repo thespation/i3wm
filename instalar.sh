@@ -16,6 +16,7 @@ GITH="https://raw.githubusercontent.com/thespation/dpux_bspwm/main/scripts/"
 i3pf="$HOME/.config"
 i3t="/tmp/i3wm"
 data_atual=$(date +"%Y%m%d%H%M%S")
+DESKTOP_SESSION=$(echo $DESKTOP_SESSION)
 reload="i3 reload"
 
 # Listas de pacotes e URLs
@@ -121,8 +122,17 @@ personalizacao() {
     echo -e "${VERD}[*] Configurações copiadas${NORM}"
 
     echo -e "\n${CIAN}[ ] Atualizar fontes${NORM}"
-    fc-cache -f -v && ${reload}
+    fc-cache -f -v
+    
+    if [[ $DESKTOP_SESSION == *"i3"* ]]; then
+        ${reload}
     echo -e "${VERD}[*] Fontes do sistema atualizadas${NORM}\n"
+
+    # Redirecionar todas as saídas para o arquivo de log
+    exec > $HOME/LogDeInstalacaoI3wm${data_atual.txt 2>&1
+    echo -e "${CIAN}[i] Para mais informações, foi salvo um arquivo de log de instalação em sua home."
+
+    echo -e "\n${CIAN}[i] Fim do scritp de instalação."
 }
 
 # Verifica se está usando Debian ou derivado
