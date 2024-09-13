@@ -126,6 +126,7 @@ personalizacao() {
     
     if [[ $DESKTOP_SESSION == *"i3"* ]]; then
         ${reload}
+    fi
     echo -e "${VERD}[*] Fontes do sistema atualizadas${NORM}\n"
 
     # Redirecionar todas as saídas para o arquivo de log
