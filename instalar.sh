@@ -45,7 +45,7 @@ instalar_programas() {
     xdg-user-dirs-update
 
     if [[ ! -d "/tmp/i3blocks" ]]; then
-    echo -e "\n${CIAN}[ ] Compilar e instalar i3blocks${NORM}"
+        echo -e "\n${CIAN}[ ] Compilar e instalar i3blocks${NORM}"
         cd /tmp && ${GG} https://github.com/vivien/i3blocks
         cd i3blocks && chmod +x autogen.sh && ./autogen.sh && ./configure && make && sudo make install
     fi
@@ -126,11 +126,8 @@ personalizacao() {
     ${reload}
     echo -e "${VERD}[*] Fontes do sistema atualizadas${NORM}\n"
 
-    # Redirecionar todas as saídas para o arquivo de log
-    exec > "$HOME/LogDeInstalacaoI3wm${data_atual}.txt" 2>&1
     echo -e "${CIAN}[i] Para mais informações, foi salvo um arquivo de log de instalação em sua home."
-
-    echo -e "\n${CIAN}[i] Fim do scritp de instalação."
+    echo -e "${CIAN}[i] Fim do scritp de instalação.\n"
 }
 
 # Verifica se está usando Debian ou derivado
@@ -142,4 +139,4 @@ if [[ -f "/etc/debian_version" ]]; then
     atualizar_sistema
 else
     echo -e "${VERM}[!] Esse script PESSOAL foi desenvolvido para rodar no Debian e seus derivados.${NORM}"
-fi
+fi | tee -a "$HOME/LogI3wm${data_atual}.txt"
