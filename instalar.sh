@@ -123,10 +123,7 @@ personalizacao() {
 
     echo -e "\n${CIAN}[ ] Atualizar fontes${NORM}"
     fc-cache -f -v
-    
-    if [[ $DESKTOP_SESSION == *"i3"* ]]; then
-        ${reload}
-    fi
+    ${reload}
     echo -e "${VERD}[*] Fontes do sistema atualizadas${NORM}\n"
 
     # Redirecionar todas as saídas para o arquivo de log
