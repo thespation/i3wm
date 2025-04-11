@@ -35,7 +35,7 @@ RELOAD="i3 reload"
 # Lista de pacotes a instalar
 PACOTES=(
     i3 xorg i3status lightdm i3lock xsettingsd xfce4-power-manager network-manager sudo
-    suckless-tools rofi alacritty nm-tray nitrogen feh lxappearance picom thunar tumbler
+    suckless-tools rofi alacritty nm-tray nitrogen feh lxappearance picom thunar tumbler git
     thunar-archive-plugin thunar-volman dh-autoreconf make maim python3-pip git curl arandr
     python3-i3ipc xdg-user-dirs htop neofetch viewnior cargo xclip yad catfish baobab
     meld xarchiver geany alsa-utils pulseaudio pavucontrol pulsemixer gcc make libx11-dev
@@ -99,7 +99,7 @@ verificar_requisitos() {
 # Função: Confirmar execução
 confirmar_execucao() {
     log "${CIAN}[i] Script PESSOAL para instalação do i3wm no Debian 12"
-    read -p "${CIAN}[?] Deseja continuar? (s/n): ${NORM}" resposta
+    read -p "[?] Deseja continuar? (s/n): " resposta
     if [[ ! "$resposta" =~ ^[sS]$ ]]; then
         log "${VERM}[!] Instalação cancelada pelo usuário${NORM}"
         exit 0
